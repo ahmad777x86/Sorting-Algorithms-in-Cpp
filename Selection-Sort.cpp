@@ -2,8 +2,16 @@
 
 using namespace std;
 
-int Minimum(int array[], const int size, int start, int &min_index)
+void Swap(int &x, int &y)
 {
+    int temp = x;
+    x = y;
+    y = temp;
+}
+
+int Find_Min_Index(int array[], const int size, int start)
+{
+    int min_index;
     int min = INT_MAX;
     for (int i = start; i < size; i++)
     {
@@ -13,20 +21,16 @@ int Minimum(int array[], const int size, int start, int &min_index)
             min_index = i;
         }
     }
-    return min;
+    return min_index;
 }
 
 void SelectionSort(int array[], const int size)
 {
     int min_index;
-    int min, temp;
     for (int i = 0; i < size; i++)
     {
-        min = Minimum(array, size, i, min_index);
-
-        temp = array[i];
-        array[i] = array[min_index];
-        array[min_index] = temp;
+        min_index = Find_Min_Index(array, size, i);
+        Swap(array[i], array[min_index]);
     }
 }
 
